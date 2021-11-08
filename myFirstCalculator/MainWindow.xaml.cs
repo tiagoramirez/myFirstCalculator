@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Windows;
+﻿using System.Windows;
 
 namespace myFirstCalculator
 {
@@ -15,18 +14,30 @@ namespace myFirstCalculator
             _num2 = 0;
             _operation = 0;
             _num2Turn = false;
+            _res = 0;
         }
 
         private double _num1;
         private double _num2;
         private int _operation;
         private bool _num2Turn;
+        private double _res;
 
         private void Result(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(_operation == 0
-                ? "No se ingreso una operacion!!! Se reinician los valores"
-                : Calculadora.Operation(_num1, _num2, _operation).ToString(CultureInfo.CurrentCulture));
+            switch (_operation)
+            {
+                case 0:
+                    MessageBox.Show("You did not enter an operation!! Values will be restarted");
+                    break;
+                case 4 when _num2 == 0:
+                    MessageBox.Show("Number can not be divided by 0");
+                    break;
+                default:
+                    _res = Calculadora.Operation(_num1, _num2, _operation);
+                    MessageBox.Show($"Result: {_res}");
+                    break;
+            }
             _num1 = 0;
             _num2 = 0;
             _operation = 0;
@@ -195,25 +206,25 @@ namespace myFirstCalculator
             _num2Turn = true;
         }
         
-        private void MostrarN1(object sender, RoutedEventArgs e)
+        private void ShowN1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("El primer numero es: "+_num1);
+            MessageBox.Show("First number is: "+_num1);
         }
         
-        private void MostrarN2(object sender, RoutedEventArgs e)
+        private void ShowN2(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("El primer numero es: "+_num2);
+            MessageBox.Show("Second number is: "+_num2);
         }
 
         private void ClearAll(object sender, RoutedEventArgs e)
         {
             Calculadora.ClearAll(ref _num1,ref _num2, ref _operation,ref _num2Turn);
         }
-        
-        private void ClearNumber(object sender, RoutedEventArgs e)
+
+        private void PreviousNumber(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn) _num2 = 0;
-            else _num1 = 0;
+            MessageBox.Show($"{_res} is setted to number 1");
+            _num1 = _res;
         }
     }
 }

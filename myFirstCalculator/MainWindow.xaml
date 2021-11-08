@@ -37,7 +37,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Grid.Column="2" Grid.Row="0" Margin="5" Click="ClearNumber" Content="Clear Number">
+        <Button Grid.Column="2" Grid.Row="0" Margin="5" Click="PreviousNumber" Content="Result Number">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
@@ -70,9 +70,9 @@
         <Button Grid.Column="2" Grid.Row="4" Margin="5" Click="NumberAction3">3</Button>
         <Button Grid.Column="3" Grid.Row="4" Margin="5" Click="SetOperation1">+</Button>
         
-        <Button Grid.Column="0" Grid.Row="5" Margin="5" Click="MostrarN2">Mostrar N2</Button>
+        <Button Grid.Column="0" Grid.Row="5" Margin="5" Click="ShowN2">Show N2</Button>
         <Button Grid.Column="1" Grid.Row="5" Margin="5" Click="NumberAction0">0</Button>
-        <Button Grid.Column="2" Grid.Row="5" Margin="5" Click="MostrarN1">Mostrar N1</Button>
+        <Button Grid.Column="2" Grid.Row="5" Margin="5" Click="ShowN1">Show N1</Button>
         <Button Grid.Column="3" Grid.Row="5" Margin="5" Click="Result">=</Button>
         
         <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="37" Margin="5">Made by Tiago Ramirez</TextBlock>
