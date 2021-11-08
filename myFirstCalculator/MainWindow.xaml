@@ -1,0 +1,80 @@
+﻿<Window x:Class="myFirstCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Calculadora Tiago" Height="450" Width="600" MinWidth="600" MinHeight="450">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="37" Margin="5">My calculator :)</TextBlock>
+        
+        <Button Grid.Column="3" Grid.Row="0" Margin="5" Click="ClearAll" Content="Clear All">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="20"></Setter>
+                            <Setter Property="Foreground" Value="Orange"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Column="2" Grid.Row="0" Margin="5" Click="ClearNumber" Content="Clear Number">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="20"></Setter>
+                            <Setter Property="Foreground" Value="Red"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        
+        <Button Grid.Column="0" Grid.Row="1" Margin="5" Click="SetOperation7">1/X</Button>
+        <Button Grid.Column="1" Grid.Row="1" Margin="5" Click="SetOperation5">X^Y</Button>
+        <Button Grid.Column="2" Grid.Row="1" Margin="5" Click="SetOperation6">SQRT(X)</Button>
+        <Button Grid.Column="3" Grid.Row="1" Margin="5" Click="SetOperation4">/</Button>
+        
+        <Button Grid.Column="0" Grid.Row="2" Margin="5" Click="NumberAction7">7</Button>
+        <Button Grid.Column="1" Grid.Row="2" Margin="5" Click="NumberAction8">8</Button>
+        <Button Grid.Column="2" Grid.Row="2" Margin="5" Click="NumberAction9">9</Button>
+        <Button Grid.Column="3" Grid.Row="2" Margin="5" Click="SetOperation3">x</Button>
+        
+        <Button Grid.Column="0" Grid.Row="3" Margin="5" Click="NumberAction4">4</Button>
+        <Button Grid.Column="1" Grid.Row="3" Margin="5" Click="NumberAction5">5</Button>
+        <Button Grid.Column="2" Grid.Row="3" Margin="5" Click="NumberAction6">6</Button>
+        <Button Grid.Column="3" Grid.Row="3" Margin="5" Click="SetOperation2">-</Button>
+        
+        <Button Grid.Column="0" Grid.Row="4" Margin="5" Click="NumberAction1">1</Button>
+        <Button Grid.Column="1" Grid.Row="4" Margin="5" Click="NumberAction2">2</Button>
+        <Button Grid.Column="2" Grid.Row="4" Margin="5" Click="NumberAction3">3</Button>
+        <Button Grid.Column="3" Grid.Row="4" Margin="5" Click="SetOperation1">+</Button>
+        
+        <Button Grid.Column="0" Grid.Row="5" Margin="5" Click="MostrarN2">Mostrar N2</Button>
+        <Button Grid.Column="1" Grid.Row="5" Margin="5" Click="NumberAction0">0</Button>
+        <Button Grid.Column="2" Grid.Row="5" Margin="5" Click="MostrarN1">Mostrar N1</Button>
+        <Button Grid.Column="3" Grid.Row="5" Margin="5" Click="Result">=</Button>
+        
+        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="37" Margin="5">Made by Tiago Ramirez</TextBlock>
+    </Grid>
+</Window>
