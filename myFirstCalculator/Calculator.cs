@@ -1,42 +1,97 @@
-﻿using System;
-
-namespace myFirstCalculator
+﻿namespace myFirstCalculator
 {
-    public static class Calculadora
+    public class Calculator:Operation
     {
-        public static double Operation(double num1,double num2,int operation)
+        public Calculator()
         {
-            double ret=0;
-            switch (operation)
+            ClearAll();
+            SetFullOperation(_num1,_num2);
+        }
+        
+        private double _num1;
+        public double Num1 { get=>_num1;
+            set
             {
-                case 1:ret = num1 + num2;
-                    break;
-                case 2: ret = num1 - num2;
-                    break;
-                case 3: ret = num1 * num2;
-                    break;
-                case 4: ret = num1 / num2;
-                    break;
-                case 5: ret = Math.Pow(num1, num2);
-                    break;
-                case 6: ret = Math.Sqrt(num1);
-                    break;
-                case 7: ret = 1 / num1;
-                    break;
-                case 8: ret = num1;
-                    break;
-                case 9: ret = num2;
-                    break;
+                _num1 = value;
+                SetFullOperation(Num1, Num2);
+                OnPropertyChanged("Num1");
             }
-            return ret;
+        }
+        
+        private double _num2;
+        public double Num2 { get=>_num2;
+            set
+            {
+                _num2 = value;
+                SetFullOperation(Num1, Num2);
+                OnPropertyChanged("Num2");
+            }
         }
 
-        public static void ClearAll(ref double num1,ref double num2,ref int operation,ref bool num2Turn)
+        private bool _num2Turn;
+
+        private double _res;
+        public double Res { get=>_res; set => _res = value;}
+
+        public void ClearAll()
         {
-            num1 = 0;
-            num2 = 0;
-            operation = 0;
-            num2Turn = false;
+            Num1 = 0;
+            Num2 = 0;
+            OperationStr = "0";
+            _num2Turn = false;
+            Res = 0;
+            SetFullOperation(Num1, Num2);
+        }
+
+        private void ClearAllExceptResult()
+        {
+            Num1 = 0;
+            Num2 = 0;
+            OperationStr = "0";
+            _num2Turn = false;
+            SetFullOperation(Num1, Num2);
+        }
+
+        public void AddNumber(int number)
+        {
+            if (_num2Turn)
+            {
+                Num2 = Num2 * 10 + number;
+            }
+            else
+            {
+                Num1 = Num1 * 10 + number;
+            }
+            SetFullOperation(Num1, Num2);
+        }
+        
+        public string GetResult()
+        {
+            switch (OperationStr)
+            {
+                case "0":
+                {
+                    ClearAllExceptResult();
+                    return "You did not enter an operation!! Values will be restarted";
+                }
+                case "4" when _num2 == 0:
+                {
+                    ClearAllExceptResult();
+                    return "Number can not be divided by 0";
+                }
+                default:
+                {
+                    _res = DoOperation(_num1,_num2);
+                    ClearAllExceptResult();
+                    return $"Result: {_res}";
+                }
+            }
+        }
+        public void SetOperation(string operation)
+        {
+            OperationStr = operation;
+            SetFullOperation(Num1, Num2);
+            _num2Turn = true;
         }
     }
 }

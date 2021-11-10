@@ -10,221 +10,121 @@ namespace myFirstCalculator
         public MainWindow()
         {
             InitializeComponent();
-            _num1 = 0;
-            _num2 = 0;
-            _operation = 0;
-            _num2Turn = false;
-            _res = 0;
+            _calc = new Calculator();
+            this.DataContext = _calc;
         }
 
-        private double _num1;
-        private double _num2;
-        private int _operation;
-        private bool _num2Turn;
-        private double _res;
+        private readonly Calculator _calc;
 
         private void Result(object sender, RoutedEventArgs e)
         {
-            switch (_operation)
-            {
-                case 0:
-                    MessageBox.Show("You did not enter an operation!! Values will be restarted");
-                    break;
-                case 4 when _num2 == 0:
-                    MessageBox.Show("Number can not be divided by 0");
-                    break;
-                default:
-                    _res = Calculadora.Operation(_num1, _num2, _operation);
-                    MessageBox.Show($"Result: {_res}");
-                    break;
-            }
-            _num1 = 0;
-            _num2 = 0;
-            _operation = 0;
-            _num2Turn = false;
+            MessageBox.Show(_calc.GetResult());
         }
 
         private void NumberAction9(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn)
-            {
-                _num2 = _num2 * 10 + 9;
-            }
-            else
-            {
-                _num1 = _num1 * 10 + 9;
-            }
+            _calc.AddNumber(9);
         }
 
         private void NumberAction8(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn)
-            {
-                _num2 = _num2 * 10 + 8;
-            }
-            else
-            {
-                _num1 = _num1 * 10 + 8;
-            }
+            _calc.AddNumber(8);
         }
 
         private void NumberAction7(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn)
-            {
-                _num2 = _num2 * 10 + 7;
-            }
-            else
-            {
-                _num1 = _num1 * 10 + 7;
-            }
+            _calc.AddNumber(7);
         }
 
         private void NumberAction6(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn)
-            {
-                _num2 = _num2 * 10 + 6;
-            }
-            else
-            {
-                _num1 = _num1 * 10 + 6;
-            }
+            _calc.AddNumber(6);
         }
 
         private void NumberAction5(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn)
-            {
-                _num2 = _num2 * 10 + 5;
-            }
-            else
-            {
-                _num1 = _num1 * 10 + 5;
-            }
+            _calc.AddNumber(5);
         }
 
         private void NumberAction4(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn)
-            {
-                _num2 = _num2 * 10 + 4;
-            }
-            else
-            {
-                _num1 = _num1 * 10 + 4;
-            }
+            _calc.AddNumber(4);
         }
 
         private void NumberAction3(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn)
-            {
-                _num2 = _num2 * 10 + 3;
-            }
-            else
-            {
-                _num1 = _num1 * 10 + 3;
-            }
+            _calc.AddNumber(3);
         }
 
         private void NumberAction2(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn)
-            {
-                _num2 = _num2 * 10 + 2;
-            }
-            else
-            {
-                _num1 = _num1 * 10 + 2;
-            }
+            _calc.AddNumber(2);
         }
 
         private void NumberAction1(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn)
-            {
-                _num2 = _num2 * 10 + 1;
-            }
-            else
-            {
-                _num1 = _num1 * 10 + 1;
-            }
+            _calc.AddNumber(1);
         }
         
         private void NumberAction0(object sender, RoutedEventArgs e)
         {
-            if (_num2Turn)
-            {
-                _num2 *= 10;
-            }
-            else
-            {
-                _num1 *= 10;
-            }
+            _calc.AddNumber(0);
         }
 
         private void SetOperation7(object sender, RoutedEventArgs e)
         {
-            _operation = 7;
-            _num2Turn=true;
+            _calc.SetOperation("7");
         }
 
         private void SetOperation5(object sender, RoutedEventArgs e)
         {
-            _operation = 5;
-            _num2Turn=true;
+            _calc.SetOperation("5");
         }
 
         private void SetOperation6(object sender, RoutedEventArgs e)
         {
-            _operation = 6;
-            _num2Turn=true;
+            _calc.SetOperation("6");
         }
 
         private void SetOperation3(object sender, RoutedEventArgs e)
         {
-            _operation = 3;
-            _num2Turn = true;
+            _calc.SetOperation("3");
         }
 
         private void SetOperation2(object sender, RoutedEventArgs e)
         {
-            _operation = 2;
-            _num2Turn = true;
+            _calc.SetOperation("2");
         }
 
         private void SetOperation4(object sender, RoutedEventArgs e)
         {
-            _operation = 4;
-            _num2Turn = true;
+            _calc.SetOperation("4");
         }
 
         private void SetOperation1(object sender, RoutedEventArgs e)
         {
-            _operation = 1;
-            _num2Turn = true;
+            _calc.SetOperation("1");
         }
         
         private void ShowN1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("First number is: "+_num1);
+            MessageBox.Show($"First number is: {_calc.Num1}");
         }
         
         private void ShowN2(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Second number is: "+_num2);
+            MessageBox.Show($"Second number is: {_calc.Num2}");
         }
 
         private void ClearAll(object sender, RoutedEventArgs e)
         {
-            Calculadora.ClearAll(ref _num1,ref _num2, ref _operation,ref _num2Turn);
+            _calc.ClearAll();
         }
 
         private void PreviousNumber(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"{_res} is setted to number 1");
-            _num1 = _res;
+            MessageBox.Show($"{_calc.Res} is setted to number 1");
+            _calc.Num1 = _calc.Res;
         }
     }
 }
